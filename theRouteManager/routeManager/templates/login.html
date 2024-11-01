@@ -1,0 +1,11 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+	<h2 class="mb-3">Login</h2>
+	<form method="post" class="needs-validation" novalidate>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="btn btn-primary">Login</button>
+	</form>
+	<p class="mt-3">If you forgot your password, <a href="{% url 'password_reset' %}">recover your account here</a>.</p>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "main/appheader.html" %}
+{% block afterlogin %}
+<h1 class="display-5">Welcome to the Home Page!</h1>
+
+{% if user.is_authenticated %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Hello, {{ user.username }}!</h5>
+            <p class="card-text">You are logged in.</p>
+            <p class="card-text">Your role is: {{ user.get_user_role_display }}</p>
+            <p class="card-text">Your email is: {{ user.email }}</p>
+            <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+{% else %}
+    <p class="lead">You are not logged in.</p>
+    <hr class="my-4">
+    <p><a href="{% url 'login' %}" role="button">Login</a> or ask an authorized user to create your account</p>
+{% endif %}
+{% endblock afterlogin %}

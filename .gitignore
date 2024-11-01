@@ -1,3 +1,6 @@
+theRouteManager/theRouteManager/secrets.py
+theRouteManager/static
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

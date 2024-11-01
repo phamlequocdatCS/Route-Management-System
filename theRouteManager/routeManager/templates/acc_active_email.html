@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hi {{ user.username }},
+
+Thank you for creating an account. Please click the link below to verify your email address and complete the registration process:
+
+{{ password_reset_link }}
+
+If you didn't create an account, you can ignore this email.
+
+Thanks,
+Your Team
+{% endautoescape %}

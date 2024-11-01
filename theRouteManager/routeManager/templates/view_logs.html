@@ -1,0 +1,44 @@
+{% extends 'main/appheader.html' %}
+
+{% block afterlogin %}
+<h1 class="my-4">Logs</h1>
+<div class="table-responsive" style="max-height: 80vh;">
+    <table class="table table-striped">
+        <thead class="thead-dark sticky-top">
+            <tr>
+                <th scope="col" style="width: 10%;">Username</th>
+                <th scope="col" style="width: 10%;">Role</th>
+                <th scope="col" style="width: 10%;">Action</th>
+                <th scope="col" style="width: 10%;">Object</th>
+                <th scope="col" style="width: 15%;">Timestamp</th>
+                <th scope="col" style="width: 15%;">Field changed</th>
+                <th scope="col" style="width: 15%;">Old value</th>
+                <th scope="col" style="width: 15%;">New value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.user.username }}</td>
+                <td>
+                    <span class="badge {% if log.user.get_user_role_display == 'Owner' %}badge-primary{% elif log.user.get_user_role_display == 'Manager' %}badge-success{% else %}badge-info{% endif %}">
+                        {{ log.user.get_user_role_display }}
+                    </span>
+                </td>
+                <td>
+                    <span class="badge {% if log.get_action_display == 'Created' %}badge-success{% elif log.get_action_display == 'Updated' %}badge-warning{% elif log.get_action_display == 'Deleted' %}badge-danger{% elif log.get_action_display == 'Logged In' %}badge-primary{% elif log.get_action_display == 'Logged Out' %}badge-secondary{% else %}badge-light{% endif %}">
+                        {{ log.get_action_display }}
+                    </span>
+                </td>
+                <td>{{ log.content_type.model|capfirst }}</td>
+                <td>{{ log.timestamp }}</td>
+                <td>{{ log.field_name }}</td>
+                <td>{{ log.old_value }}</td>
+                <td>{{ log.new_value }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

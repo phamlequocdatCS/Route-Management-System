@@ -1,0 +1,20 @@
+.ui-autocomplete {
+    z-index: 10000; 
+    background-color: #FFFFFF;
+    width: 300px;
+    border: 1px solid #cfcfcf;
+    list-style-type: none;
+    padding-left: 0px;
+}
+.ui-menu-item {
+    cursor: pointer;
+    list-style-type: none;
+    padding: 10px;
+}
+.ui-menu-item:hover {
+    background-color: #f1f1f1;
+}
+#osm-map {
+    height: 500px;
+    width: 100%;
+}

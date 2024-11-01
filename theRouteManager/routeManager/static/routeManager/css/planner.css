@@ -1,0 +1,12 @@
+.leaflet-top.leaflet-right {
+    display: none;
+}
+.sticky-header thead {
+    position: sticky;
+    top: 0;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
