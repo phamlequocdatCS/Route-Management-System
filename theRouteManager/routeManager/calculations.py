@@ -3,6 +3,7 @@ from sklearn.neighbors import BallTree
 
 EARTH_RADIUS_METER = 6371000
 
+
 def calculate_ball_tree(location_coords):
     tree = BallTree(location_coords, leaf_size=15, metric="haversine")
     return tree
@@ -19,5 +20,5 @@ def nearest_loc_index(distances: np.ndarray, indices: np.ndarray, max_distance_m
         nearest_index = indices[0][np.argmin(distances[0][close_enough])]
     else:
         nearest_index = indices[0][np.argmin(distances)]
-        
+
     return nearest_index

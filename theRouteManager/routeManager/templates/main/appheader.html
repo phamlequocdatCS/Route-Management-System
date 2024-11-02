@@ -24,7 +24,7 @@
 					<li class="nav-item"><a class="nav-link" href="{% url 'view_logs' %}">View Logs</a></li>
 					{% endif %}
 					{% if request.user.user_role == 'ownr' %}
-						<li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Create account</a></li>
+					<li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Create account</a></li>
 					{% endif %}
 				</ul>
 			</div>

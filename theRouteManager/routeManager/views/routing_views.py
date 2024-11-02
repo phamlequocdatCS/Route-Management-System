@@ -1,13 +1,14 @@
-from django.contrib.auth.decorators import login_required
 import json
-from ..models import Location, Plan, PERMISSIONS, Bookmark
-from django.core.serializers.json import DjangoJSONEncoder
-from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 
+from django.contrib.auth.decorators import login_required
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import JsonResponse
+from django.shortcuts import render
+
+from ..models import PERMISSIONS, Bookmark, Location, Plan
 from ..utilities.json_utils import (
-    json_return_error_status,
     JSON_INSUFFICIENT_PERMISSION,
+    json_return_error_status,
 )
 
 

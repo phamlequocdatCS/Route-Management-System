@@ -1,9 +1,9 @@
 map = L.map('osm-map').setView([10.7327, 106.6998], 13);
-    
+
 L.tileLayer(osmMapLink, {}).addTo(map);
 
 function fetchLocationSuccess(json) {
-    return $.map(json, function(item) {
+    return $.map(json, function (item) {
         return {
             label: item.display_name,
             value: item.display_name,
@@ -15,17 +15,17 @@ function fetchLocationSuccess(json) {
 }
 
 $("#search").autocomplete({
-    source: function(request, response) {
+    source: function (request, response) {
         fetchFromUrl(
             nominatimAutocompleteLink,
             request.term,
-            function(json) {
+            function (json) {
                 response(fetchLocationSuccess(json));
             },
             consoleLogError
         )
     },
-    select: function(event, ui) {
+    select: function (event, ui) {
         var coords = [ui.item.lat, ui.item.lon];
         map.setView(coords, 13);
         L.marker(coords).addTo(map);
@@ -41,10 +41,10 @@ $("#search").autocomplete({
     }
 });
 
-$('#save-location').click(function() {
+$('#save-location').click(function () {
     if (selectedLocation) {
         makePostAjaxCallWithData(
-            'add_loc_view', 
+            'add_loc_view',
             JSON.stringify({
                 lat: selectedLocation.lat,
                 lng: selectedLocation.lng,
@@ -52,7 +52,7 @@ $('#save-location').click(function() {
                 address: selectedLocation.address,
                 location_type: selectedLocation.type,
             }),
-            function(data) {
+            function (data) {
                 if (data.status === 'success') {
                     alert(data.message);
                 } else {

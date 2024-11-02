@@ -10,11 +10,11 @@
 
 <!-- Search Box -->
 <div class="input-group mb-3">
-	<input type="text" id="searchBox" class="form-control" placeholder="Search locations...">
-	<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-	<div class="input-group-append">
-		<button id="searchAllButton" class="btn btn-primary" type="button">View all locations</button>
-	</div>
+    <input type="text" id="searchBox" class="form-control" placeholder="Search locations...">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <div class="input-group-append">
+        <button id="searchAllButton" class="btn btn-primary" type="button">View all locations</button>
+    </div>
 </div>
 
 <!-- Location Table -->
@@ -31,7 +31,7 @@
     <tbody id="locationList">
         <!-- The locations will be populated here by the AJAX call -->
     </tbody>
-    
+
 </table>
 
 <!-- Add Note Modal -->
@@ -44,7 +44,7 @@
 {% include "modal/edit_loc.html" %}
 
 <style>
-    
+
 </style>
 
 <script>

@@ -188,7 +188,7 @@ def delete_object(request, obj_id, model):
         save_log = True
 
         if isinstance(obj, Plan):
-            if not request.user.has_perm(PERMISSIONS.CAN_DELETE_PLAN):
+            if not request.user.has_perm(PERMISSIONS.CAN_DELETE_PLAN, obj):
                 return JsonResponse(JSON_INSUFFICIENT_PERMISSION)
 
         if isinstance(obj, Location):
@@ -196,7 +196,7 @@ def delete_object(request, obj_id, model):
                 return JsonResponse(JSON_INSUFFICIENT_PERMISSION)
 
         if isinstance(obj, Note):
-            if not request.user.has_perm(PERMISSIONS.CAN_DELETE_NOTE):
+            if not request.user.has_perm(PERMISSIONS.CAN_DELETE_NOTE, obj):
                 return JsonResponse(JSON_INSUFFICIENT_PERMISSION)
             save_log = False
 

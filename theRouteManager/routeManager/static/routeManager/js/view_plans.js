@@ -321,7 +321,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.edit-plan', function () {
         var planId = $(this).data('plan-id');
-        var planStatus = $(this).data('plan-status'); // Access the plan status here
+        var planStatus = $(this).data('plan-status');
         console.log(planStatus);
         if (planStatus !== 'Complete') {
             window.location.href = 'planner/' + planId;

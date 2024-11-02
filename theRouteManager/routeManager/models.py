@@ -23,7 +23,9 @@ class STATUS(models.TextChoices):
     PROGRS = "progrs", "In-progress"
     COMPLT = "complt", "Complete"
 
+
 STATUS_VALID_VALUES = dict(STATUS.choices)
+
 
 class PLAN_CLEARANCE(models.TextChoices):
     CONFIDENTIAL = "cfdt", "Is confidential"
@@ -57,7 +59,7 @@ class PERMISSIONS:
 
     CAN_UN_BOOKMARK = "can_un_bookmark"
 
-    UNIVERSAL_PERMS = [CAN_ADD_LOC, CAN_ADD_PLAN, CAN_ADD_NOTE]
+    UNIVERSAL_PERMS = [CAN_ADD_LOC, CAN_ADD_PLAN, CAN_ADD_NOTE, CAN_EDIT_LOC]
 
 
 class JSON_FIELDS:
@@ -158,6 +160,8 @@ class Account(AbstractBaseUser):
             return output
 
         if isinstance(obj, Note):
+            print(obj.author)
+            print(self)
             if (
                 perm in [PERMISSIONS.CAN_EDIT_NOTE, PERMISSIONS.CAN_DELETE_NOTE]
                 and obj.author == self
@@ -165,14 +169,11 @@ class Account(AbstractBaseUser):
                 return True
 
         if perm == PERMISSIONS.CAN_UN_BOOKMARK and isinstance(obj, Bookmark):
-            if obj.user == self:
-                return True
-            return False
+            return obj.user == self
 
         if self.user_role == ROLE.MANAGER:
             return perm in [
                 # Location
-                PERMISSIONS.CAN_EDIT_LOC,
                 PERMISSIONS.CAN_DELETE_LOC,
             ]
 
@@ -371,6 +372,16 @@ class Plan(models.Model):
 
     def __str__(self):
         return self.__repr__()
+    
+    def serialize(self):
+        return {
+            'pk': self.pk,  
+            'plan_name': self.plan_name, 
+            'username' : self.user.username,
+            'est_distance' : self.est_distance,
+            'est_duration' : self.est_duration,
+            'status' : self.get_status_display(),
+        }
 
     def update_plan(
         self,

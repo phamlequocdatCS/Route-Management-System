@@ -1,5 +1,6 @@
 from django import forms
-from .models import Account, ROLE, Location
+
+from .models import ROLE, Account, Location
 from .utilities.utils import generate_password
 
 

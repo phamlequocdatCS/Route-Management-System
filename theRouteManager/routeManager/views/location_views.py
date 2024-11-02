@@ -1,7 +1,9 @@
 import json
+
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
+
 from ..forms import EditLocationForm
 from ..models import PERMISSIONS, Location, LoggerSystem
 from ..utilities.json_utils import (
@@ -34,10 +36,12 @@ def add_loc_view(request):
 
 @login_required(login_url="home")
 def edit_loc_view(request, location_id):
-    if not request.user.has_perm(PERMISSIONS.CAN_EDIT_LOC):
+    print("I am called")
+    location = get_object_or_404(Location, pk=location_id)
+    
+    if not request.user.has_perm(PERMISSIONS.CAN_EDIT_LOC, location):
         return JsonResponse(JSON_INSUFFICIENT_PERMISSION)
 
-    location = get_object_or_404(Location, pk=location_id)
 
     if request.method == "POST":
         old_name = location.name

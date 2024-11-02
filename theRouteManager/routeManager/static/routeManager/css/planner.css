@@ -1,6 +1,7 @@
 .leaflet-top.leaflet-right {
     display: none;
 }
+
 .sticky-header thead {
     position: sticky;
     top: 0;

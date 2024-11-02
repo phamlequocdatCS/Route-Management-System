@@ -247,6 +247,7 @@ $(document).ready(function () {
         )
     });
 
+    // Delete note
     $(document).on('click', '.delete-note', function () {
         var userConfirmed = confirm('Are you sure you want to delete this note?');
         if (userConfirmed) {
@@ -254,19 +255,11 @@ $(document).ready(function () {
             makeDeleteAjaxCallWithId(
                 $(this).data('note-id'), 'delete_note',
                 function (data) {
-                    alert(data.message);
+                    console.log(data);
+                    alert("Note deleted successfully");
                     fetchNotes(currentLocationSelected);
                 }, function (data) { alert(data.error); }
             );
-            // var note_id = $(this).data('note-id');
-            // makePostAjaxCallWithDataNoContentType(
-            //     'delete_note', {
-            //         'id': note_id
-            //     }, function(data) { 
-            //         alert(data.message); 
-            //         fetchNotes(currentLocationSelected);
-            //     }, function(data) { alert(data.error); }
-            // );
         }
     });
 
