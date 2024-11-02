@@ -1,5 +1,6 @@
 theRouteManager/theRouteManager/secrets.py
 theRouteManager/static
+osrm_Release/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
